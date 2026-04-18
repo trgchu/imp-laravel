@@ -1,4 +1,4 @@
-#EN REVISIÓN AÚN, NO JALA AL 100%
+# EN REVISIÓN AÚN, NO JALA AL 100%
 
 # HoshiChat
 
