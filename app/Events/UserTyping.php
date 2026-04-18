@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Events;
+
+use App\Models\User;
+use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
+
+class UserTyping implements ShouldBroadcast
+{
+    use Dispatchable, InteractsWithSockets, SerializesModels;
+
+    public User $user;
+    public int $conversationId;
+
+    /**
+     * Create a new event instance.
+     */
+    public function __construct(User $user, int $conversationId)
+    {
+        $this->user = $user;
+        $this->conversationId = $conversationId;
+    }
+
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array<int, PrivateChannel>
+     */
+    public function broadcastOn(): array
+    {
+        return [
+            new PrivateChannel('conversation.' . $this->conversationId),
+        ];
+    }
+
+    /**
+     * Get the data to broadcast.
+     */
+    public function broadcastWith(): array
+    {
+        return [
+            'user_id' => $this->user->id,
+            'user_name' => $this->user->name,
+            'conversation_id' => $this->conversationId,
+        ];
+    }
+}
