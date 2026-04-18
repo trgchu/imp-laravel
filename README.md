@@ -1,3 +1,5 @@
+#EN REVISIÓN AÚN, NO JALA AL 100%
+
 # HoshiChat
 
 HoshiChat es una aplicación de chat en tiempo real desarrollada con Laravel y Vue. Permite a los usuarios comunicarse en conversaciones dinámicas con actualización instantánea de mensajes sin recargar la página.
